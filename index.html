@@ -3,277 +3,332 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UCSB Parking Reform | A Student Initiative for Fair Parking</title>
+    <title>Reform UCSB Parking | A Movement for Fair Campus Mobility</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        'sans': ['Inter', 'sans-serif'],
+                        'inter': ['Inter', 'sans-serif'],
                     },
                     colors: {
                         'ucsb-blue': '#003660',
                         'ucsb-gold': '#FEBC11',
-                        'brand-dark': '#212529',
-                        'brand-light': '#F8F9FA',
                     },
                 }
             }
         }
     </script>
     <style>
-        .section-fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .section-fade-in.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        html {
-            scroll-padding-top: 80px; /* Offset for sticky header */
+        body {
+            font-family: 'Inter', sans-serif;
         }
     </style>
 </head>
-<body class="bg-white text-brand-dark font-sans antialiased">
-
-    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-5">
-                <div class="flex items-center space-x-2">
-                    <i data-lucide="car" class="w-7 h-7 text-ucsb-blue"></i>
-                    <span class="text-xl font-bold text-ucsb-blue">UCSB Parking Reform</span>
+<body class="bg-white text-gray-900">
+    <!-- Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <h1 class="text-xl font-bold text-ucsb-blue">Reform UCSB Parking</h1>
+                    <p class="text-sm text-gray-500">Building fairness for all Gauchos</p>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#impact" class="text-gray-600 hover:text-ucsb-blue transition-colors">The Impact</a>
-                    <a href="#solutions" class="text-gray-600 hover:text-ucsb-blue transition-colors">Our Solutions</a>
-                    <a href="#action" class="bg-ucsb-blue text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">Take Action</a>
-                </div>
+                <button id="theme-toggle" class="p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition">
+                    <svg id="moon-icon" class="w-5 h-5 text-ucsb-blue" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="text-center py-24 md:py-32 bg-brand-light border-b border-gray-200">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-ucsb-blue mb-4 leading-tight">A Call for Fairer Parking at UCSB</h1>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
-                    Exorbitant fines and rising permit costs place an unnecessary financial burden on students. It's time for a system that prioritizes student success over revenue.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#solutions" class="bg-ucsb-blue text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all transform hover:scale-105">View the Solutions</a>
-                    <a href="#impact" class="bg-transparent border-2 border-ucsb-gold text-ucsb-gold px-8 py-3 rounded-lg font-semibold text-lg hover:bg-ucsb-gold hover:text-ucsb-blue transition-colors">See the Financial Impact</a>
-                </div>
+    <!-- Hero Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <span class="text-ucsb-blue">Reform</span> UCSB Parking
+            </h1>
+            <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                Exorbitant fines and a broken system are punishing students. It's time for a change.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#solutions" class="px-6 py-3 bg-ucsb-blue text-white rounded-md font-medium hover:bg-ucsb-blue/90 transition">View Solutions</a>
+                <a href="#real-cost" class="px-6 py-3 border border-ucsb-blue text-ucsb-blue rounded-md font-medium hover:bg-ucsb-blue/10 transition">Analyze Impact</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="impact" class="py-24 section-fade-in">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-brand-dark">The Financial Impact</h2>
-                    <p class="text-lg text-gray-500 mt-2">How a simple ticket creates significant financial stress.</p>
-                </div>
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="bg-brand-light p-10 rounded-xl border border-gray-200">
-                        <div class="flex justify-between items-center pb-6">
-                            <div>
-                                <p class="text-gray-500">Common Fine (e.g., Overtime)</p>
-                                <p class="text-4xl font-bold text-ucsb-blue">$48</p>
-                            </div>
-                            <i data-lucide="plus" class="w-8 h-8 text-gray-400"></i>
-                            <div>
-                                <p class="text-gray-500">Standard Late Penalty</p>
-                                <p class="text-4xl font-bold text-ucsb-blue">$48</p>
-                            </div>
+    <!-- The Real Cost Section -->
+    <section id="real-cost" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">The Real Cost of a Ticket</h2>
+                <p class="text-lg text-gray-600">A $48 fine can double to $96 with delays.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-2 bg-white border border-gray-200 rounded-lg p-6">
+                    <div class="space-y-4">
+                        <div class="flex justify-between p-4 bg-gray-50 rounded-md">
+                            <span class="font-medium">Initial Fine</span>
+                            <span class="text-2xl font-bold">$48.00</span>
                         </div>
-                        <div class="border-t border-gray-300 pt-6 flex justify-between items-center">
-                            <div>
-                                <p class="text-gray-600 font-semibold text-lg">Total Cost to Student</p>
-                                <p class="text-5xl font-extrabold text-red-600">$96</p>
-                            </div>
-                            <div class="text-right">
-                                <p class="font-semibold text-red-600">Consequences</p>
-                                <p class="text-gray-500">DMV Hold, Cascading Fees</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-6">
-                        <h3 class="text-2xl font-bold text-brand-dark mb-2">What else could $96 cover?</h3>
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-ucsb-blue/10 p-3 rounded-lg"><i data-lucide="shopping-cart" class="w-6 h-6 text-ucsb-blue"></i></div>
-                            <div>
-                                <h4 class="font-semibold text-lg">A Week of Groceries</h4>
-                                <p class="text-gray-600">This fine forces a choice between paying a penalty and buying essential food.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-ucsb-blue/10 p-3 rounded-lg"><i data-lucide="book-open" class="w-6 h-6 text-ucsb-blue"></i></div>
-                            <div>
-                                <h4 class="font-semibold text-lg">A Required Textbook</h4>
-                                <p class="text-gray-600">Students may have to sacrifice required course materials, impacting their grades.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-ucsb-blue/10 p-3 rounded-lg"><i data-lucide="briefcase" class="w-6 h-6 text-ucsb-blue"></i></div>
-                            <div>
-                                <h4 class="font-semibold text-lg">Nearly 6 Hours of Work</h4>
-                                <p class="text-gray-600">Based on California's minimum wage, this represents a significant time commitment that could be spent studying.</p>
-                            </div>
+                        <div class="text-center text-gray-500">+ 36 Day Delay</div>
+                        <div class="flex justify-between p-4 bg-gray-50 rounded-md">
+                            <span class="font-medium">Total Cost</span>
+                            <span class="text-3xl font-bold text-red-600">$96.00</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <section class="py-24 bg-brand-light section-fade-in">
-             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-brand-dark">Rising Permit Costs</h2>
-                    <p class="text-lg text-gray-500 mt-2">Analysis of the Annual Student Commuter Permit.</p>
+                <div class="space-y-4">
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-medium mb-4">Financial Equivalent</h4>
+                        <div class="space-y-2 text-sm text-gray-600">
+                            <div class="flex justify-between">
+                                <span>Groceries (2 weeks)</span>
+                                <span>$96</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Textbooks (1 course)</span>
+                                <span>$96</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Work Hours (min wage)</span>
+                                <span>6h</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Utilities (partial month)</span>
+                                <span>$96</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-gray-200 rounded-lg p-6">
+                        <h4 class="font-medium mb-4 text-red-600">Consequences</h4>
+                        <div class="space-y-2 text-sm text-gray-600">
+                            <div>DMV Registration Hold</div>
+                            <div>Vehicle Immobilization</div>
+                            <div>Cascading Violations</div>
+                            <div>Debt Accumulation</div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Rising Costs Timeline</h2>
+                <p class="text-lg text-gray-600">Permit costs for residence halls have increased over time.</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
                 <div class="relative">
-                    <div class="absolute left-4 top-2 h-full w-0.5 bg-gray-300" aria-hidden="true"></div>
-                    <div class="space-y-12">
-                        <div class="relative flex items-start space-x-6">
-                            <div class="w-8 h-8 bg-white border-2 border-ucsb-blue rounded-full flex items-center justify-center">
-                                <i data-lucide="calendar" class="w-4 h-4 text-ucsb-blue"></i>
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-px bg-gray-200"></div>
+                    <div class="space-y-8">
+                        <div class="relative flex items-center">
+                            <div class="flex-1 text-right pr-8">
+                                <div class="bg-white p-4 rounded-md border border-gray-200">
+                                    <h4 class="font-medium text-gray-700">2018</h4>
+                                    <p class="text-2xl font-bold">$500</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-lg text-ucsb-blue">2018-19 Academic Year</h4>
-                                <p class="text-2xl font-bold mt-1">$450 <span class="text-base font-normal text-gray-500 ml-2">(Baseline)</span></p>
+                            <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-300 rounded-full"></div>
+                            <div class="flex-1 pl-8"></div>
+                        </div>
+                        <div class="relative flex items-center">
+                            <div class="flex-1 pr-8"></div>
+                            <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-300 rounded-full"></div>
+                            <div class="flex-1 pl-8">
+                                <div class="bg-white p-4 rounded-md border border-gray-200">
+                                    <h4 class="font-medium text-gray-700">2021</h4>
+                                    <p class="text-2xl font-bold">$650</p>
+                                    <p class="text-sm text-gray-500">+30%</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="relative flex items-start space-x-6">
-                             <div class="w-8 h-8 bg-white border-2 border-ucsb-blue rounded-full flex items-center justify-center">
-                                <i data-lucide="calendar" class="w-4 h-4 text-ucsb-blue"></i>
+                        <div class="relative flex items-center">
+                            <div class="flex-1 text-right pr-8">
+                                <div class="bg-white p-4 rounded-md border border-gray-200">
+                                    <h4 class="font-medium text-gray-700">2025</h4>
+                                    <p class="text-2xl font-bold text-red-600">$760</p>
+                                    <p class="text-sm text-gray-500">+17%</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-lg text-ucsb-blue">2022-23 Academic Year</h4>
-                                <p class="text-2xl font-bold mt-1">$500 <span class="text-base font-normal text-green-600 ml-2">(+11% Increase)</span></p>
-                            </div>
-                        </div>
-                        <div class="relative flex items-start space-x-6">
-                             <div class="w-8 h-8 bg-white border-2 border-red-600 rounded-full flex items-center justify-center">
-                                <i data-lucide="trending-up" class="w-4 h-4 text-red-600"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg text-red-600">2025-26 (Projected)</h4>
-                                <p class="text-2xl font-bold mt-1">$575 <span class="text-base font-normal text-red-600 ml-2">(Total Increase: +28%)</span></p>
-                            </div>
+                            <div class="absolute left-1/2 -translate-x-1/2 w-3 h-3 bg-gray-300 rounded-full"></div>
+                            <div class="flex-1 pl-8"></div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="solutions" class="py-24 section-fade-in">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-brand-dark">A Three-Point Plan for Reform</h2>
-                    <p class="text-lg text-gray-500 mt-2">Practical, proven, and student-focused solutions.</p>
+    <!-- Student Stories -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Student Reports</h2>
+                <p class="text-lg text-gray-600">Real experiences from UCSB students.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-md border border-gray-200">
+                    <blockquote class="text-gray-600 mb-4 text-sm">
+                        "I got a $96 ticket for being 10 minutes late to move my car after a late-night study session. I had to choose between paying the fine and buying my textbooks."
+                    </blockquote>
+                    <cite class="text-xs text-gray-500">— 3rd Year Sociology Student</cite>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-brand-light p-8 rounded-xl border border-gray-200">
-                        <div class="flex items-center text-ucsb-blue mb-4">
-                            <span class="text-3xl font-extrabold mr-3">01</span>
-                            <h3 class="text-xl font-bold">Education First</h3>
-                        </div>
-                        <p class="text-gray-600">Replace first-time minor violation fines with a mandatory online "Gaucho Parking Primer" module. This approach prioritizes education over punishment, reducing accidental re-offenses and financial strain.</p>
-                    </div>
-                    <div class="bg-brand-light p-8 rounded-xl border border-gray-200">
-                         <div class="flex items-center text-ucsb-blue mb-4">
-                            <span class="text-3xl font-extrabold mr-3">02</span>
-                            <h3 class="text-xl font-bold">Financial Access</h3>
-                        </div>
-                        <p class="text-gray-600">Implement a simple, online payment plan portal compliant with CA Vehicle Code 40220. This ensures that students facing financial hardship have accessible, clear options to resolve fines without incurring further penalties.</p>
-                    </div>
-                     <div class="bg-brand-light p-8 rounded-xl border border-gray-200">
-                         <div class="flex items-center text-ucsb-blue mb-4">
-                            <span class="text-3xl font-extrabold mr-3">03</span>
-                            <h3 class="text-xl font-bold">Fair Appeals</h3>
-                        </div>
-                        <p class="text-gray-600">Abolish the "pay-to-appeal" requirement that creates a barrier to justice. Establish a student-majority Parking Appeals Committee to ensure impartial, peer-led reviews of all contested citations.</p>
-                    </div>
+                <div class="bg-white p-6 rounded-md border border-gray-200">
+                    <blockquote class="text-gray-600 mb-4 text-sm">
+                        "The appeals process feels designed to make you give up. Having to pay the fine just to argue it is unfair for students without extra cash."
+                    </blockquote>
+                    <cite class="text-xs text-gray-500">— 2nd Year Economics Student</cite>
+                </div>
+                <div class="bg-white p-6 rounded-md border border-gray-200">
+                    <blockquote class="text-gray-600 mb-4 text-sm">
+                        "As a first-year, I can't even buy a parking permit. I'm forced to park in IV where I get county tickets that are even more expensive."
+                    </blockquote>
+                    <cite class="text-xs text-gray-500">— 1st Year Engineering Student</cite>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="action" class="py-24 bg-ucsb-blue section-fade-in">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-4xl font-bold text-white">Help Make Fair Parking a Reality</h2>
-                <p class="text-lg text-ucsb-gold mt-4 mb-10 max-w-2xl mx-auto">Your voice is crucial. A simple email to Associated Students leadership can help push for these common-sense reforms.</p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                     <a href="mailto:?subject=Support%20for%20UCSB%20Parking%20Reform&body=To%20the%20Associated%20Students%20Representatives%2C%0A%0AI%20am%20a%20UCSB%20student%20writing%20to%20express%20my%20strong%20support%20for%20the%20Parking%20Reform%20initiative.%20The%20current%20system's%20high%20fines%20and%20rising%20permit%20costs%20are%20detrimental%20to%20student%20well-being%20and%20success.%0A%0AI%20urge%20you%20to%20advocate%20for%20the%20proposed%20three-point%20plan%3A%0A1.%20A%20first-offense%20warning%20program%0A2.%20Accessible%20payment%20plans%0A3.%20A%20fair%2C%20student-led%20appeals%20process%0A%0AThese%20changes%20would%20create%20a%20more%20equitable%20and%20supportive%20campus%20environment.%20Thank%20you%20for%20your%20consideration.%0A%0ASincerely%2C%0AA%20Concerned%20Gaucho" class="bg-white text-ucsb-blue px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-200 transition-colors">
-                        Email AS Leadership
-                    </a>
-                    <button id="share-button" class="bg-ucsb-gold text-ucsb-blue px-8 py-3 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors">
-                       <span id="share-text">Share the Initiative</span>
-                    </button>
+    <!-- Solutions -->
+    <section id="solutions" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Three-Point Reform Protocol</h2>
+                <p class="text-lg text-gray-600">Practical upgrades for a fairer system.</p>
+            </div>
+            <div class="space-y-12">
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-ucsb-blue text-white rounded-md flex items-center justify-center mr-3 font-bold">01</span>
+                            <h3 class="text-xl font-bold text-ucsb-blue">Education Protocol</h3>
+                        </div>
+                        <h4 class="text-lg font-medium mb-2">First-Offense Warning Program</h4>
+                        <p class="text-gray-600 mb-4">Replace penalties for first-time minor violations with educational warnings and a "Gaucho Parking Primer."</p>
+                        <div class="bg-gray-100 p-3 rounded-md text-sm">
+                            <i data-lucide="graduation-cap" class="w-4 h-4 text-ucsb-blue inline mr-2"></i>Education over punishment
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-start md:flex-row-reverse">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-ucsb-blue text-white rounded-md flex items-center justify-center mr-3 font-bold">02</span>
+                            <h3 class="text-xl font-bold text-ucsb-blue">Payment System</h3>
+                        </div>
+                        <h4 class="text-lg font-medium mb-2">Accessible Payment Plans</h4>
+                        <p class="text-gray-600 mb-4">Overhaul plans to comply with CA law, with online portal and 120-day windows.</p>
+                        <div class="bg-gray-100 p-3 rounded-md text-sm">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-ucsb-blue inline mr-2"></i>CA Vehicle Code 40220 Compliance
+                        </div>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div>
+                        <div class="flex items-center mb-4">
+                            <span class="w-8 h-8 bg-ucsb-blue text-white rounded-md flex items-center justify-center mr-3 font-bold">03</span>
+                            <h3 class="text-xl font-bold text-ucsb-blue">Justice Protocol</h3>
+                        </div>
+                        <h4 class="text-lg font-medium mb-2">Fair Appeals Process</h4>
+                        <p class="text-gray-600 mb-4">No pre-payment for contests; student-majority appeals committee.</p>
+                        <div class="bg-gray-100 p-3 rounded-md text-sm">
+                            <i data-lucide="users" class="w-4 h-4 text-ucsb-blue inline mr-2"></i>Student-majority review
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
-    </main>
-    
-    <footer class="bg-brand-dark text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div class="text-center">
-                <p class="font-semibold">UCSB Parking Reform Initiative</p>
-                <p class="text-sm text-gray-400 mt-1">&copy; 2025 | A student-led movement for a more equitable campus.</p>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Join the Movement</h2>
+            <p class="text-xl text-gray-600 mb-8">These reforms are practical and proven. Help build a system that supports students.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:?subject=Support%20for%20UCSB%20Parking%20Reform&body=Dear%20Associated%20Students%20representatives%2C%0A%0AI%20am%20writing%20to%20express%20my%20strong%20support%20for%20the%20UCSB%20Parking%20Reform%20movement.%20The%20current%20system%20places%20an%20unfair%20financial%20burden%20on%20students.%0A%0AI%20urge%20you%20to%20advocate%20for%20the%20proposed%20three-point%20plan%2C%20including%3A%0A1.%20A%20first-offense%20warning%20program%0A2.%20Accessible%20payment%20plans%0A3.%20A%20fair%20appeals%20process%0A%0AThank%20you%20for%20your%20attention%20to%20this%20critical%20issue.%0A%0ASincerely%2C%0AA%20Concerned%20Gaucho" class="px-6 py-3 bg-ucsb-blue text-white rounded-md font-medium hover:bg-ucsb-blue/90 transition flex items-center justify-center">
+                    <i data-lucide="mail" class="w-5 h-5 mr-2"></i>Email AS Leadership
+                </a>
+                <button id="share-button" class="px-6 py-3 border border-ucsb-blue text-ucsb-blue rounded-md font-medium hover:bg-ucsb-blue/10 transition flex items-center justify-center">
+                    <i data-lucide="share" class="w-5 h-5 mr-2"></i><span id="share-text">Share Movement</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <h3 class="text-lg font-bold text-ucsb-blue mb-4">Reform UCSB Parking</h3>
+                    <p class="text-gray-600 mb-4">A student-led movement for equity and justice in campus mobility at UC Santa Barbara.</p>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4">Reform Priorities</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>Education over punishment</li>
+                        <li>Accessibility for all</li>
+                        <li>Due process in appeals</li>
+                        <li>Financial equity</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-medium mb-4">Get Involved</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>Contact AS representatives</li>
+                        <li>Share with peers</li>
+                        <li>Advocate for change</li>
+                        <li>Spread awareness</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm text-gray-500">
+                &copy; 2025 UCSB Parking Reform Movement
             </div>
         </div>
     </footer>
 
     <script>
         lucide.createIcons();
-        
-        // --- Share Button Functionality ---
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') html.classList.add('dark');
+
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        });
+
         const shareButton = document.getElementById('share-button');
         const shareText = document.getElementById('share-text');
-        
         shareButton.addEventListener('click', async () => {
-            if (!navigator.clipboard) {
-                alert("Clipboard access not available.");
-                return;
-            }
             try {
                 await navigator.clipboard.writeText(window.location.href);
-                const originalText = shareText.textContent;
                 shareText.textContent = 'Link Copied!';
-                setTimeout(() => {
-                    shareText.textContent = originalText;
-                }, 2000);
-            } catch (err) {
-                console.error('Failed to copy: ', err);
-                alert("Failed to copy link.");
+                setTimeout(() => shareText.textContent = 'Share Movement', 2000);
+            } catch {
+                shareText.textContent = 'Copy URL Manually';
+                setTimeout(() => shareText.textContent = 'Share Movement', 2000);
             }
         });
 
-        // --- Smooth Scrolling for Anchor Links ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
             });
-        });
-
-        // --- Intersection Observer for Fade-in Animations ---
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.section-fade-in').forEach(section => {
-            observer.observe(section);
         });
     </script>
 </body>
