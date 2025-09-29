@@ -1,710 +1,279 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reform UCSB Parking | A Movement for Fair Campus Mobility</title>
+    <title>UCSB Parking Reform | A Student Initiative for Fair Parking</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        'inter': ['Inter', 'sans-serif'],
+                        'sans': ['Inter', 'sans-serif'],
                     },
                     colors: {
                         'ucsb-blue': '#003660',
                         'ucsb-gold': '#FEBC11',
-                        'light-blue': '#4A90E2',
-                        'cyber-blue': '#00D4FF',
-                        'cyber-purple': '#9D4EDD',
-                        'cyber-green': '#39FF14',
-                        'neon-orange': '#FF6B35',
+                        'brand-dark': '#212529',
+                        'brand-light': '#F8F9FA',
                     },
-                    boxShadow: {
-                        'cyber': '0 0 20px rgba(0, 212, 255, 0.3)',
-                        'cyber-strong': '0 0 30px rgba(0, 212, 255, 0.5)',
-                        'neon': '0 0 20px rgba(57, 255, 20, 0.4)',
-                        'purple-glow': '0 0 20px rgba(157, 78, 221, 0.4)',
-                    },
-                    animation: {
-                        'pulse-glow': 'pulse-glow 2s ease-in-out infinite alternate',
-                        'float': 'float 6s ease-in-out infinite',
-                        'grid-flow': 'grid-flow 20s linear infinite',
-                        'data-flow': 'data-flow 3s linear infinite',
-                    },
-                    keyframes: {
-                        'pulse-glow': {
-                            '0%': { boxShadow: '0 0 20px rgba(0, 212, 255, 0.3)' },
-                            '100%': { boxShadow: '0 0 30px rgba(0, 212, 255, 0.6)' },
-                        },
-                        'float': {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        'grid-flow': {
-                            '0%': { transform: 'translateX(0)' },
-                            '100%': { transform: 'translateX(-50px)' },
-                        },
-                        'data-flow': {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(100vw)' },
-                        },
-                    }
                 }
             }
         }
     </script>
     <style>
-        .grid-bg {
-            background-image: 
-                linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: grid-flow 20s linear infinite;
-        }
-        
-        .cyber-border {
-            position: relative;
-            border: 1px solid rgba(0, 212, 255, 0.3);
-        }
-        
-        .cyber-border::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.5), transparent);
-            border-radius: inherit;
+        .section-fade-in {
             opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-        
-        .cyber-border:hover::before {
+        .section-fade-in.is-visible {
             opacity: 1;
+            transform: translateY(0);
         }
-        
-        .text-glow {
-            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
-        }
-        
-        .data-stream {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: #00D4FF;
-            border-radius: 50%;
-            animation: data-flow 3s linear infinite;
-            opacity: 0.7;
+        html {
+            scroll-padding-top: 80px; /* Offset for sticky header */
         }
     </style>
 </head>
-<body class="font-inter bg-black text-gray-100 relative overflow-x-hidden">
-    <!-- Grid Background -->
-    <div class="fixed inset-0 grid-bg opacity-30 pointer-events-none"></div>
-    
-    <!-- Data Streams -->
-    <div class="fixed inset-0 pointer-events-none overflow-hidden">
-        <div class="data-stream" style="top: 20%; animation-delay: 0s;"></div>
-        <div class="data-stream" style="top: 40%; animation-delay: 1s;"></div>
-        <div class="data-stream" style="top: 60%; animation-delay: 2s;"></div>
-        <div class="data-stream" style="top: 80%; animation-delay: 0.5s;"></div>
-    </div>
+<body class="bg-white text-brand-dark font-sans antialiased">
 
-    <!-- Sticky Header -->
-    <header class="sticky top-0 z-50 bg-black/80 backdrop-blur-lg border-b border-cyber-blue/30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div>
-                    <h1 class="text-xl font-bold text-cyber-blue text-glow">REFORM_UCSB_PARKING.exe</h1>
-                    <p class="text-sm text-gray-400 font-mono">:: Building fairness for all Gauchos ::</p>
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-5">
+                <div class="flex items-center space-x-2">
+                    <i data-lucide="car" class="w-7 h-7 text-ucsb-blue"></i>
+                    <span class="text-xl font-bold text-ucsb-blue">UCSB Parking Reform</span>
                 </div>
-                <button id="theme-toggle" class="p-3 rounded-lg bg-gray-900 hover:bg-gray-800 border border-cyber-blue/30 hover:border-cyber-blue/60 transition-all duration-300 cyber-border">
-                    <svg id="sun-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
-                    </svg>
-                    <svg id="moon-icon" class="w-5 h-5 block text-cyber-blue" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
-                    </svg>
-                </button>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#impact" class="text-gray-600 hover:text-ucsb-blue transition-colors">The Impact</a>
+                    <a href="#solutions" class="text-gray-600 hover:text-ucsb-blue transition-colors">Our Solutions</a>
+                    <a href="#action" class="bg-ucsb-blue text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">Take Action</a>
+                </div>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-cyber-blue/10 via-transparent to-cyber-purple/10"></div>
-        
-        <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 w-32 h-32 border border-cyber-blue/30 rotate-45 animate-float"></div>
-        <div class="absolute bottom-20 right-10 w-24 h-24 border border-cyber-purple/30 rotate-12 animate-float" style="animation-delay: 1s;"></div>
-        
-        <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <div class="mb-8">
-                <div class="inline-flex items-center px-6 py-3 rounded-full bg-cyber-blue/20 border border-cyber-blue/40 mb-6">
-                    <span class="w-2 h-2 bg-cyber-green rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-cyber-blue font-mono text-sm">SYSTEM_STATUS: REFORM_INITIATED</span>
+    <main>
+        <section class="text-center py-24 md:py-32 bg-brand-light border-b border-gray-200">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-ucsb-blue mb-4 leading-tight">A Call for Fairer Parking at UCSB</h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+                    Exorbitant fines and rising permit costs place an unnecessary financial burden on students. It's time for a system that prioritizes student success over revenue.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#solutions" class="bg-ucsb-blue text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-all transform hover:scale-105">View the Solutions</a>
+                    <a href="#impact" class="bg-transparent border-2 border-ucsb-gold text-ucsb-gold px-8 py-3 rounded-lg font-semibold text-lg hover:bg-ucsb-gold hover:text-ucsb-blue transition-colors">See the Financial Impact</a>
                 </div>
             </div>
-            
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-glow">
-                <span class="text-cyber-blue">REFORM</span>
-                <br>
-                <span class="text-white">UCSB PARKING</span>
-            </h1>
-            
-            <div class="max-w-3xl mx-auto space-y-4 mb-8">
-                <p class="text-xl md:text-2xl text-gray-300">
-                    <span class="text-neon-orange font-semibold">Exorbitant fines</span> and a 
-                    <span class="text-cyber-purple font-semibold">broken system</span> are punishing students.
-                </p>
-                <p class="text-lg md:text-xl text-cyber-blue font-mono">
-                    :: It's time for a change ::
-                </p>
-            </div>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <a href="#solutions" class="group relative px-8 py-4 bg-gradient-to-r from-cyber-blue to-cyber-purple rounded-lg font-semibold text-lg text-white shadow-cyber hover:shadow-cyber-strong transition-all duration-300 transform hover:scale-105">
-                    <span class="relative z-10">ACCESS SOLUTIONS</span>
-                    <div class="absolute inset-0 bg-gradient-to-r from-cyber-blue to-cyber-purple opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
-                </a>
-                <a href="#real-cost" class="group relative px-8 py-4 bg-transparent border-2 border-cyber-blue rounded-lg font-semibold text-lg text-cyber-blue hover:bg-cyber-blue hover:text-black transition-all duration-300 cyber-border">
-                    ANALYZE DAMAGE
-                </a>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- The Real Cost Section -->
-    <section id="real-cost" class="py-20 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-black to-gray-900"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center px-6 py-3 rounded-full bg-neon-orange/20 border border-neon-orange/40 mb-6">
-                    <span class="w-2 h-2 bg-neon-orange rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-neon-orange font-mono text-sm">FINANCIAL_IMPACT.analyze()</span>
+        <section id="impact" class="py-24 section-fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-brand-dark">The Financial Impact</h2>
+                    <p class="text-lg text-gray-500 mt-2">How a simple ticket creates significant financial stress.</p>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-                    THE <span class="text-neon-orange text-glow">REAL COST</span> OF A TICKET
-                </h2>
-                <p class="text-lg text-gray-400 font-mono">
-                    :: A $48 fine becomes financial warfare ::
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-8 items-center">
-                <!-- Cost Breakdown -->
-                <div class="lg:col-span-2">
-                    <div class="bg-gray-900/50 rounded-2xl p-8 border border-neon-orange/30 shadow-lg backdrop-blur-sm cyber-border">
-                        <div class="space-y-6">
-                            <div class="flex items-center justify-between p-6 bg-gradient-to-r from-neon-orange/20 to-transparent rounded-lg border border-neon-orange/30">
-                                <div class="flex items-center">
-                                    <div class="w-3 h-3 bg-neon-orange rounded-full mr-4 animate-pulse"></div>
-                                    <span class="font-semibold text-white font-mono">INITIAL_FINE</span>
-                                </div>
-                                <span class="text-3xl font-bold text-neon-orange font-mono">$48.00</span>
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="bg-brand-light p-10 rounded-xl border border-gray-200">
+                        <div class="flex justify-between items-center pb-6">
+                            <div>
+                                <p class="text-gray-500">Common Fine (e.g., Overtime)</p>
+                                <p class="text-4xl font-bold text-ucsb-blue">$48</p>
                             </div>
-                            
-                            <div class="flex items-center justify-center py-4">
-                                <div class="flex items-center text-cyber-blue font-mono text-sm">
-                                    <span class="animate-pulse">▼</span>
-                                    <span class="mx-3">PROCESSING_DELAY: 36_DAYS</span>
-                                    <span class="animate-pulse">▼</span>
-                                </div>
+                            <i data-lucide="plus" class="w-8 h-8 text-gray-400"></i>
+                            <div>
+                                <p class="text-gray-500">Standard Late Penalty</p>
+                                <p class="text-4xl font-bold text-ucsb-blue">$48</p>
                             </div>
-                            
-                            <div class="flex items-center justify-between p-6 bg-gradient-to-r from-red-500/30 to-transparent rounded-lg border border-red-500/50 animate-pulse-glow">
-                                <div class="flex items-center">
-                                    <div class="w-3 h-3 bg-red-500 rounded-full mr-4 animate-pulse"></div>
-                                    <span class="font-semibold text-white font-mono">TOTAL_DAMAGE</span>
-                                </div>
-                                <span class="text-4xl font-bold text-red-400 font-mono">$96.00</span>
+                        </div>
+                        <div class="border-t border-gray-300 pt-6 flex justify-between items-center">
+                            <div>
+                                <p class="text-gray-600 font-semibold text-lg">Total Cost to Student</p>
+                                <p class="text-5xl font-extrabold text-red-600">$96</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="font-semibold text-red-600">Consequences</p>
+                                <p class="text-gray-500">DMV Hold, Cascading Fees</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-bold text-brand-dark mb-2">What else could $96 cover?</h3>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-ucsb-blue/10 p-3 rounded-lg"><i data-lucide="shopping-cart" class="w-6 h-6 text-ucsb-blue"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-lg">A Week of Groceries</h4>
+                                <p class="text-gray-600">This fine forces a choice between paying a penalty and buying essential food.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-ucsb-blue/10 p-3 rounded-lg"><i data-lucide="book-open" class="w-6 h-6 text-ucsb-blue"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-lg">A Required Textbook</h4>
+                                <p class="text-gray-600">Students may have to sacrifice required course materials, impacting their grades.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="bg-ucsb-blue/10 p-3 rounded-lg"><i data-lucide="briefcase" class="w-6 h-6 text-ucsb-blue"></i></div>
+                            <div>
+                                <h4 class="font-semibold text-lg">Nearly 6 Hours of Work</h4>
+                                <p class="text-gray-600">Based on California's minimum wage, this represents a significant time commitment that could be spent studying.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Impact Analysis -->
-                <div class="space-y-4">
-                    <div class="bg-gray-900/70 rounded-xl p-6 border border-cyber-green/30 backdrop-blur-sm cyber-border">
-                        <div class="flex items-center mb-4">
-                            <div class="w-8 h-8 bg-cyber-green/20 rounded-lg flex items-center justify-center mr-3">
-                                <i data-lucide="calculator" class="w-4 h-4 text-cyber-green"></i>
-                            </div>
-                            <h4 class="font-semibold text-cyber-green font-mono">FINANCIAL_EQUIVALENT</h4>
-                        </div>
-                        <div class="space-y-3 text-sm text-gray-300 font-mono">
-                            <div class="flex justify-between">
-                                <span>Groceries (2 weeks)</span>
-                                <span class="text-cyber-green">$96.00</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Textbooks (3 units)</span>
-                                <span class="text-cyber-green">$96.00</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Work Hours (min wage)</span>
-                                <span class="text-cyber-green">8.0h</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span>Utilities (1 month)</span>
-                                <span class="text-cyber-green">$96.00</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-red-500/10 rounded-xl p-6 border border-red-500/30 backdrop-blur-sm">
-                        <div class="flex items-center mb-4">
-                            <div class="w-8 h-8 bg-red-500/20 rounded-lg flex items-center justify-center mr-3">
-                                <i data-lucide="alert-triangle" class="w-4 h-4 text-red-400"></i>
-                            </div>
-                            <h4 class="font-semibold text-red-400 font-mono">SYSTEM_CONSEQUENCES</h4>
-                        </div>
-                        <div class="space-y-2 text-sm text-red-300 font-mono">
-                            <div>→ DMV_REGISTRATION_HOLD</div>
-                            <div>→ VEHICLE_IMMOBILIZATION</div>
-                            <div>→ CASCADING_VIOLATIONS</div>
-                            <div>→ DEBT_SPIRAL_INITIATED</div>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Timeline Section -->
-    <section class="py-20 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center px-6 py-3 rounded-full bg-cyber-purple/20 border border-cyber-purple/40 mb-6">
-                    <span class="w-2 h-2 bg-cyber-purple rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-cyber-purple font-mono text-sm">TEMPORAL_ANALYSIS.execute()</span>
+        <section class="py-24 bg-brand-light section-fade-in">
+             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-brand-dark">Rising Permit Costs</h2>
+                    <p class="text-lg text-gray-500 mt-2">Analysis of the Annual Student Commuter Permit.</p>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-                    <span class="text-cyber-purple text-glow">RISING COSTS</span> TIMELINE
-                </h2>
-                <p class="text-lg text-gray-400 font-mono">
-                    :: How permits became financially weaponized ::
-                </p>
-            </div>
-
-            <div class="max-w-4xl mx-auto">
                 <div class="relative">
-                    <div class="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-cyber-blue via-cyber-purple to-red-500"></div>
-                    
-                    <div class="space-y-16">
-                        <div class="relative flex items-center">
-                            <div class="flex-1 text-right pr-8">
-                                <div class="bg-gray-900/70 p-6 rounded-lg border border-cyber-green/30 backdrop-blur-sm cyber-border">
-                                    <h4 class="font-mono text-cyber-green mb-2">2018.BASELINE</h4>
-                                    <p class="text-3xl font-bold text-cyber-green font-mono">$450.00</p>
-                                    <p class="text-sm text-gray-400 font-mono">INITIAL_PERMIT_COST</p>
-                                </div>
+                    <div class="absolute left-4 top-2 h-full w-0.5 bg-gray-300" aria-hidden="true"></div>
+                    <div class="space-y-12">
+                        <div class="relative flex items-start space-x-6">
+                            <div class="w-8 h-8 bg-white border-2 border-ucsb-blue rounded-full flex items-center justify-center">
+                                <i data-lucide="calendar" class="w-4 h-4 text-ucsb-blue"></i>
                             </div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-cyber-green rounded-full border-2 border-black animate-pulse"></div>
-                            <div class="flex-1 pl-8"></div>
-                        </div>
-
-                        <div class="relative flex items-center">
-                            <div class="flex-1 pr-8"></div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-yellow-500 rounded-full border-2 border-black animate-pulse"></div>
-                            <div class="flex-1 pl-8">
-                                <div class="bg-gray-900/70 p-6 rounded-lg border border-yellow-500/30 backdrop-blur-sm cyber-border">
-                                    <h4 class="font-mono text-yellow-500 mb-2">2021.ESCALATION</h4>
-                                    <p class="text-3xl font-bold text-yellow-500 font-mono">$450.00</p>
-                                    <p class="text-sm text-gray-400 font-mono">INCREASE: 0%</p>
-                                </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-ucsb-blue">2018-19 Academic Year</h4>
+                                <p class="text-2xl font-bold mt-1">$450 <span class="text-base font-normal text-gray-500 ml-2">(Baseline)</span></p>
                             </div>
                         </div>
-
-                        <div class="relative flex items-center">
-                            <div class="flex-1 text-right pr-8">
-                                <div class="bg-gray-900/70 p-6 rounded-lg border border-red-500/30 backdrop-blur-sm animate-pulse-glow">
-                                    <h4 class="font-mono text-red-400 mb-2">2025.CURRENT</h4>
-                                    <p class="text-3xl font-bold text-red-400 font-mono">$535.00</p>
-                                    <p class="text-sm text-gray-400 font-mono">TOTAL_INCREASE: +19%</p>
-                                </div>
+                        <div class="relative flex items-start space-x-6">
+                             <div class="w-8 h-8 bg-white border-2 border-ucsb-blue rounded-full flex items-center justify-center">
+                                <i data-lucide="calendar" class="w-4 h-4 text-ucsb-blue"></i>
                             </div>
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-red-500 rounded-full border-2 border-black animate-pulse"></div>
-                            <div class="flex-1 pl-8"></div>
+                            <div>
+                                <h4 class="font-bold text-lg text-ucsb-blue">2022-23 Academic Year</h4>
+                                <p class="text-2xl font-bold mt-1">$500 <span class="text-base font-normal text-green-600 ml-2">(+11% Increase)</span></p>
+                            </div>
+                        </div>
+                        <div class="relative flex items-start space-x-6">
+                             <div class="w-8 h-8 bg-white border-2 border-red-600 rounded-full flex items-center justify-center">
+                                <i data-lucide="trending-up" class="w-4 h-4 text-red-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg text-red-600">2025-26 (Projected)</h4>
+                                <p class="text-2xl font-bold mt-1">$575 <span class="text-base font-normal text-red-600 ml-2">(Total Increase: +28%)</span></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Student Stories -->
-    <section class="py-20 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-black to-gray-900"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center px-6 py-3 rounded-full bg-cyber-blue/20 border border-cyber-blue/40 mb-6">
-                    <span class="w-2 h-2 bg-cyber-blue rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-cyber-blue font-mono text-sm">USER_TESTIMONIALS.load()</span>
+        <section id="solutions" class="py-24 section-fade-in">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-brand-dark">A Three-Point Plan for Reform</h2>
+                    <p class="text-lg text-gray-500 mt-2">Practical, proven, and student-focused solutions.</p>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-                    <span class="text-cyber-blue text-glow">STUDENT</span> REPORTS
-                </h2>
-                <p class="text-lg text-gray-400 font-mono">
-                    :: Real experiences from the UCSB network ::
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-900/50 p-6 rounded-xl border border-red-500/30 backdrop-blur-sm cyber-border group hover:border-red-500/60 transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-2 h-2 bg-red-500 rounded-full mr-3 animate-pulse"></div>
-                        <span class="text-red-400 font-mono text-sm">ERROR_LOG_001</span>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-brand-light p-8 rounded-xl border border-gray-200">
+                        <div class="flex items-center text-ucsb-blue mb-4">
+                            <span class="text-3xl font-extrabold mr-3">01</span>
+                            <h3 class="text-xl font-bold">Education First</h3>
+                        </div>
+                        <p class="text-gray-600">Replace first-time minor violation fines with a mandatory online "Gaucho Parking Primer" module. This approach prioritizes education over punishment, reducing accidental re-offenses and financial strain.</p>
                     </div>
-                    <blockquote class="text-gray-300 mb-4 font-mono text-sm leading-relaxed">
-                        "I got a $96 ticket for being 10 minutes late to move my car after a late-night study session. I had to choose between paying the fine and buying my textbooks."
-                    </blockquote>
-                    <cite class="text-xs font-mono text-gray-500">
-                        — USER_3RD_YEAR_SOCIOLOGY
-                    </cite>
-                </div>
-
-                <div class="bg-gray-900/50 p-6 rounded-xl border border-red-500/30 backdrop-blur-sm cyber-border group hover:border-red-500/60 transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-2 h-2 bg-red-500 rounded-full mr-3 animate-pulse"></div>
-                        <span class="text-red-400 font-mono text-sm">ERROR_LOG_002</span>
+                    <div class="bg-brand-light p-8 rounded-xl border border-gray-200">
+                         <div class="flex items-center text-ucsb-blue mb-4">
+                            <span class="text-3xl font-extrabold mr-3">02</span>
+                            <h3 class="text-xl font-bold">Financial Access</h3>
+                        </div>
+                        <p class="text-gray-600">Implement a simple, online payment plan portal compliant with CA Vehicle Code 40220. This ensures that students facing financial hardship have accessible, clear options to resolve fines without incurring further penalties.</p>
                     </div>
-                    <blockquote class="text-gray-300 mb-4 font-mono text-sm leading-relaxed">
-                        "The appeals process feels designed to make you give up. Having to pay the fine just to request a hearing is unfair for students without extra cash."
-                    </blockquote>
-                    <cite class="text-xs font-mono text-gray-500">
-                        — USER_2ND_YEAR_ECONOMICS
-                    </cite>
-                </div>
-
-                <div class="bg-gray-900/50 p-6 rounded-xl border border-red-500/30 backdrop-blur-sm cyber-border group hover:border-red-500/60 transition-all duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-2 h-2 bg-red-500 rounded-full mr-3 animate-pulse"></div>
-                        <span class="text-red-400 font-mono text-sm">ERROR_LOG_003</span>
-                    </div>
-                    <blockquote class="text-gray-300 mb-4 font-mono text-sm leading-relaxed">
-                        "As a first-year, I can't even buy a parking permit. I'm forced to park in IV where I get county tickets that are even more expensive."
-                    </blockquote>
-                    <cite class="text-xs font-mono text-gray-500">
-                        — USER_1ST_YEAR_ENGINEERING
-                    </cite>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solutions -->
-    <section id="solutions" class="py-20 relative">
-        <div class="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <div class="inline-flex items-center px-6 py-3 rounded-full bg-cyber-green/20 border border-cyber-green/40 mb-6">
-                    <span class="w-2 h-2 bg-cyber-green rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-cyber-green font-mono text-sm">REFORM_PROTOCOL.initialize()</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white">
-                    <span class="text-cyber-green text-glow">THREE-POINT</span> REFORM PROTOCOL
-                </h2>
-                <p class="text-lg text-gray-400 font-mono">
-                    :: Deploying systematic justice upgrades ::
-                </p>
-            </div>
-
-            <div class="space-y-20">
-                <!-- Solution 1 -->
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 lg:order-1">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-r from-cyber-blue to-cyber-purple rounded-lg flex items-center justify-center mr-4 shadow-cyber">
-                                <span class="text-white font-bold text-xl font-mono">01</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-cyber-blue font-mono">EDUCATION_PROTOCOL</h3>
+                     <div class="bg-brand-light p-8 rounded-xl border border-gray-200">
+                         <div class="flex items-center text-ucsb-blue mb-4">
+                            <span class="text-3xl font-extrabold mr-3">03</span>
+                            <h3 class="text-xl font-bold">Fair Appeals</h3>
                         </div>
-                        <h4 class="text-xl text-white mb-4">First-Offense Warning Program</h4>
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            Replace financial penalties for first-time minor violations with educational warnings. Students complete the "Gaucho Parking Primer" to transform their violation into a learning opportunity, breaking the punishment cycle.
-                        </p>
-                        <div class="bg-cyber-green/10 p-4 rounded-lg border border-cyber-green/30">
-                            <div class="flex items-center">
-                                <i data-lucide="graduation-cap" class="w-5 h-5 text-cyber-green mr-3"></i>
-                                <span class="text-cyber-green font-mono text-sm">OUTCOME: Education over punishment</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-1 lg:order-2">
-                        <div class="bg-gradient-to-br from-cyber-blue/20 to-cyber-purple/20 p-8 rounded-2xl border border-cyber-blue/30 cyber-border backdrop-blur-sm">
-                            <div class="w-16 h-16 bg-cyber-blue/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-cyber-blue/30">
-                                <i data-lucide="lightbulb" class="w-8 h-8 text-cyber-blue"></i>
-                            </div>
-                            <h4 class="text-center font-mono text-cyber-blue mb-2">TRANSFORM_PROTOCOL</h4>
-                            <p class="text-center text-gray-300 text-sm">Convert violation.penalty → knowledge.upgrade</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Solution 2 -->
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 lg:order-1">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-r from-neon-orange to-yellow-500 rounded-lg flex items-center justify-center mr-4 shadow-lg">
-                                <span class="text-black font-bold text-xl font-mono">02</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-neon-orange font-mono">PAYMENT_SYSTEM</h3>
-                        </div>
-                        <h4 class="text-xl text-white mb-4">Accessible Payment Plans</h4>
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            Expand the payment plan program to better comply with California law. Deploy an online portal, extend application windows to 120 days, and proactively inform students of available financial assistance for all, not just indigent persons.
-                        </p>
-                        <div class="bg-neon-orange/10 p-4 rounded-lg border border-neon-orange/30">
-                            <div class="flex items-center">
-                                <i data-lucide="shield-check" class="w-5 h-5 text-neon-orange mr-3"></i>
-                                <span class="text-neon-orange font-mono text-sm">COMPLIANCE: CA Vehicle Code 40220</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-1 lg:order-2">
-                        <div class="bg-gradient-to-br from-neon-orange/20 to-yellow-500/20 p-8 rounded-2xl border border-neon-orange/30 cyber-border backdrop-blur-sm">
-                            <div class="w-16 h-16 bg-neon-orange/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-neon-orange/30">
-                                <i data-lucide="credit-card" class="w-8 h-8 text-neon-orange"></i>
-                            </div>
-                            <h4 class="text-center font-mono text-neon-orange mb-2">ACCESSIBILITY_PROTOCOL</h4>
-                            <p class="text-center text-gray-300 text-sm">Deploy financial.relief when needed.most</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Solution 3 -->
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="order-2 lg:order-1">
-                        <div class="flex items-center mb-6">
-                            <div class="w-12 h-12 bg-gradient-to-r from-cyber-purple to-pink-500 rounded-lg flex items-center justify-center mr-4 shadow-purple-glow">
-                                <span class="text-white font-bold text-xl font-mono">03</span>
-                            </div>
-                            <h3 class="text-2xl font-bold text-cyber-purple font-mono">JUSTICE_PROTOCOL</h3>
-                        </div>
-                        <h4 class="text-xl text-white mb-4">Fair Appeals Process</h4>
-                        <p class="text-gray-300 mb-6 leading-relaxed">
-                            Eliminate the requirement to pre-pay fines before contesting them at higher levels. Establish a student-majority Parking Appeals Committee to ensure peer review and restore true due process.
-                        </p>
-                        <div class="bg-cyber-purple/10 p-4 rounded-lg border border-cyber-purple/30">
-                            <div class="flex items-center">
-                                <i data-lucide="users" class="w-5 h-5 text-cyber-purple mr-3"></i>
-                                <span class="text-cyber-purple font-mono text-sm">FEATURE: Student-majority review</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="order-1 lg:order-2">
-                        <div class="bg-gradient-to-br from-cyber-purple/20 to-pink-500/20 p-8 rounded-2xl border border-cyber-purple/30 cyber-border backdrop-blur-sm">
-                            <div class="w-16 h-16 bg-cyber-purple/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-cyber-purple/30">
-                                <i data-lucide="scale" class="w-8 h-8 text-cyber-purple"></i>
-                            </div>
-                            <h4 class="text-center font-mono text-cyber-purple mb-2">DUE_PROCESS</h4>
-                            <p class="text-center text-gray-300 text-sm">Justice != bankAccount.balance</p>
-                        </div>
+                        <p class="text-gray-600">Abolish the "pay-to-appeal" requirement that creates a barrier to justice. Establish a student-majority Parking Appeals Committee to ensure impartial, peer-led reviews of all contested citations.</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Call to Action -->
-    <section class="py-20 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-cyber-blue/20 via-transparent to-cyber-purple/20"></div>
-        
-        <!-- Action Grid Background -->
-        <div class="absolute inset-0 opacity-20">
-            <div class="grid grid-cols-8 gap-4 h-full p-8">
-                <div class="border border-cyber-blue/30 rounded animate-pulse"></div>
-                <div class="border border-cyber-purple/30 rounded animate-pulse" style="animation-delay: 0.5s;"></div>
-                <div class="border border-cyber-green/30 rounded animate-pulse" style="animation-delay: 1s;"></div>
-                <div class="border border-neon-orange/30 rounded animate-pulse" style="animation-delay: 1.5s;"></div>
-                <div class="border border-cyber-blue/30 rounded animate-pulse" style="animation-delay: 2s;"></div>
-                <div class="border border-cyber-purple/30 rounded animate-pulse" style="animation-delay: 2.5s;"></div>
-                <div class="border border-cyber-green/30 rounded animate-pulse" style="animation-delay: 3s;"></div>
-                <div class="border border-neon-orange/30 rounded animate-pulse" style="animation-delay: 3.5s;"></div>
-            </div>
-        </div>
-        
-        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
-            <div class="mb-8">
-                <div class="inline-flex items-center px-6 py-3 rounded-full bg-cyber-green/20 border border-cyber-green/40 mb-6">
-                    <span class="w-2 h-2 bg-cyber-green rounded-full mr-3 animate-pulse"></span>
-                    <span class="text-cyber-green font-mono text-sm">MOVEMENT.join()</span>
+        <section id="action" class="py-24 bg-ucsb-blue section-fade-in">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-4xl font-bold text-white">Help Make Fair Parking a Reality</h2>
+                <p class="text-lg text-ucsb-gold mt-4 mb-10 max-w-2xl mx-auto">Your voice is crucial. A simple email to Associated Students leadership can help push for these common-sense reforms.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                     <a href="mailto:?subject=Support%20for%20UCSB%20Parking%20Reform&body=To%20the%20Associated%20Students%20Representatives%2C%0A%0AI%20am%20a%20UCSB%20student%20writing%20to%20express%20my%20strong%20support%20for%20the%20Parking%20Reform%20initiative.%20The%20current%20system's%20high%20fines%20and%20rising%20permit%20costs%20are%20detrimental%20to%20student%20well-being%20and%20success.%0A%0AI%20urge%20you%20to%20advocate%20for%20the%20proposed%20three-point%20plan%3A%0A1.%20A%20first-offense%20warning%20program%0A2.%20Accessible%20payment%20plans%0A3.%20A%20fair%2C%20student-led%20appeals%20process%0A%0AThese%20changes%20would%20create%20a%20more%20equitable%20and%20supportive%20campus%20environment.%20Thank%20you%20for%20your%20consideration.%0A%0ASincerely%2C%0AA%20Concerned%20Gaucho" class="bg-white text-ucsb-blue px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-200 transition-colors">
+                        Email AS Leadership
+                    </a>
+                    <button id="share-button" class="bg-ucsb-gold text-ucsb-blue px-8 py-3 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition-colors">
+                       <span id="share-text">Share the Initiative</span>
+                    </button>
                 </div>
             </div>
-            
-            <h2 class="text-4xl md:text-5xl font-bold mb-6 text-white">
-                <span class="text-cyber-green text-glow">JOIN THE</span>
-                <br>
-                <span class="text-cyber-blue text-glow">MOVEMENT</span>
-            </h2>
-            
-            <p class="text-xl mb-8 text-gray-300 font-mono max-w-3xl mx-auto">
-                These reforms are practical, cost-effective, and proven at peer institutions. 
-                <span class="text-cyber-blue">Help us deploy a system that supports student success</span> 
-                instead of creating barriers.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                <a id="email-button" href="mailto:?subject=Support%20for%20UCSB%20Parking%20Reform&body=Dear%20Associated%20Students%20representatives%2C%0A%0AI%20am%20writing%20to%20express%20my%20strong%20support%20for%20the%20UCSB%20Parking%20Reform%20movement.%20The%20current%20system%20places%20an%20unfair%20financial%20burden%20on%20students.%0A%0AI%20urge%20you%20to%20advocate%20for%20the%20proposed%20three-point%20plan%2C%20including%3A%0A1.%20A%20first-offense%20warning%20program%0A2.%20Accessible%20payment%20plans%0A3.%20A%20fair%20appeals%20process%0A%0AThank%20you%20for%20your%20attention%20to%20this%20critical%20issue.%0A%0ASincerely%2C%0AA%20Concerned%20Gaucho" class="group relative px-8 py-4 bg-gradient-to-r from-cyber-blue to-cyber-purple rounded-lg font-semibold text-lg text-white shadow-cyber hover:shadow-cyber-strong transition-all duration-300 transform hover:scale-105">
-                    <div class="flex items-center">
-                        <i data-lucide="mail" class="w-5 h-5 mr-3"></i>
-                        <span class="font-mono">EMAIL AS_LEADERSHIP</span>
-                    </div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-cyber-blue to-cyber-purple opacity-0 group-hover:opacity-20 rounded-lg transition-opacity duration-300"></div>
-                </a>
-                
-                <button id="share-button" class="group relative px-8 py-4 bg-transparent border-2 border-cyber-green rounded-lg font-semibold text-lg text-cyber-green hover:bg-cyber-green hover:text-black transition-all duration-300 cyber-border">
-                    <div class="flex items-center">
-                        <i data-lucide="share" class="w-5 h-5 mr-3"></i>
-                        <span id="share-text" class="font-mono">SHARE_MOVEMENT</span>
-                    </div>
-                </button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="relative bg-black border-t border-cyber-blue/30">
-        <div class="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div class="col-span-2">
-                    <h3 class="text-2xl font-bold mb-4 text-cyber-blue text-glow font-mono">REFORM_UCSB_PARKING.exe</h3>
-                    <p class="text-gray-400 mb-4 leading-relaxed">
-                        Building a fairer, more accessible campus mobility system that supports student success instead of creating financial barriers and systemic inequities.
-                    </p>
-                    <p class="text-sm text-gray-500 font-mono">:: A student-led movement for equity and justice at UC Santa Barbara ::</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-cyber-green font-mono">REFORM_PRIORITIES</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm font-mono">
-                        <li>→ Education over punishment</li>
-                        <li>→ Accessibility for all students</li>
-                        <li>→ Due process in appeals</li>
-                        <li>→ Financial equity</li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-neon-orange font-mono">ENGAGEMENT_PROTOCOLS</h4>
-                    <ul class="space-y-2 text-gray-400 text-sm font-mono">
-                        <li>→ Contact AS representatives</li>
-                        <li>→ Share with fellow Gauchos</li>
-                        <li>→ Advocate for systemic change</li>
-                        <li>→ Spread network awareness</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-                <p class="font-mono text-sm">&copy; 2025 UCSB Parking Reform Movement | Building a better campus for all Gauchos</p>
+        </section>
+    </main>
+    
+    <footer class="bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center">
+                <p class="font-semibold">UCSB Parking Reform Initiative</p>
+                <p class="text-sm text-gray-400 mt-1">&copy; 2025 | A student-led movement for a more equitable campus.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
-
-        // Dark mode toggle functionality (defaulting to dark)
-        const themeToggle = document.getElementById('theme-toggle');
-        const html = document.documentElement;
         
-        // Check for saved theme or default to dark
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        html.classList.toggle('dark', savedTheme === 'dark');
-
-        themeToggle.addEventListener('click', () => {
-            html.classList.toggle('dark');
-            const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
-            localStorage.setItem('theme', newTheme);
-        });
-
-        // Share button functionality
+        // --- Share Button Functionality ---
         const shareButton = document.getElementById('share-button');
         const shareText = document.getElementById('share-text');
         
         shareButton.addEventListener('click', async () => {
+            if (!navigator.clipboard) {
+                alert("Clipboard access not available.");
+                return;
+            }
             try {
                 await navigator.clipboard.writeText(window.location.href);
                 const originalText = shareText.textContent;
-                shareText.textContent = 'LINK_COPIED!';
-                shareButton.classList.remove('border-cyber-green', 'text-cyber-green', 'hover:bg-cyber-green', 'hover:text-black');
-                shareButton.classList.add('border-cyber-green', 'text-black', 'bg-cyber-green');
-                
+                shareText.textContent = 'Link Copied!';
                 setTimeout(() => {
                     shareText.textContent = originalText;
-                    shareButton.classList.remove('bg-cyber-green', 'text-black');
-                    shareButton.classList.add('text-cyber-green', 'hover:bg-cyber-green', 'hover:text-black');
                 }, 2000);
             } catch (err) {
-                // Fallback for browsers that don't support clipboard API
-                shareText.textContent = 'COPY_URL_MANUALLY';
-                setTimeout(() => {
-                    shareText.textContent = 'SHARE_MOVEMENT';
-                }, 2000);
+                console.error('Failed to copy: ', err);
+                alert("Failed to copy link.");
             }
         });
 
-        // Smooth scrolling for anchor links
+        // --- Smooth Scrolling for Anchor Links ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Enhanced intersection observer for cyber-style animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
+        // --- Intersection Observer for Fade-in Animations ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    
-                    // Add cyber glow effect on scroll
-                    if (entry.target.classList.contains('cyber-border')) {
-                        entry.target.style.boxShadow = '0 0 20px rgba(0, 212, 255, 0.2)';
-                    }
+                    entry.target.classList.add('is-visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        // Animate sections on scroll
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(50px)';
-            section.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+        document.querySelectorAll('.section-fade-in').forEach(section => {
             observer.observe(section);
-        });
-
-        // Add dynamic glow effects to cyber borders
-        document.querySelectorAll('.cyber-border').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                el.style.boxShadow = '0 0 25px rgba(0, 212, 255, 0.4)';
-            });
-            el.addEventListener('mouseleave', () => {
-                el.style.boxShadow = '0 0 10px rgba(0, 212, 255, 0.2)';
-            });
         });
     </script>
 </body>
